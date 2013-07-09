@@ -7,6 +7,8 @@ else
   local ev = require'ev'
   local loop = ev.Loop.default
 
+  local busted = require'busted'
+
   local eps = 0.000000000001
 
   local egg = ''
@@ -14,7 +16,7 @@ else
   local concat = function(letter)
     local yield = function(done)
       ev.Timer.new(
-        async(function()
+        busted.async(function()
           egg = egg..letter
           done()
         end),eps):start(loop)
